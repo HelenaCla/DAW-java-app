@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    
+    <!-- Archivo de bienvenida -->
+    <welcome-file-list>
+        <welcome-file>llibreria.jsp</welcome-file> 
+    </welcome-file-list>
+
+    <!-- Mapeo del servlet "Consulta" -->
+ 
+    <servlet>
+        <servlet-name>InsertarServlet</servlet-name>
+        <servlet-class>com.practica3.InsertarServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>InsertarServlet</servlet-name>
+        <url-pattern>/insertar</url-pattern>
+    </servlet-mapping>
+     <servlet>
+        <servlet-name>EditarLlibresServlet</servlet-name>
+        <servlet-class>com.practica3.EditarLlibresServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EditarLlibresServlet</servlet-name>
+        <url-pattern>/editarLlibre</url-pattern>
+    </servlet-mapping>
+    <!-- Configuración de la sesión -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+</web-app>
