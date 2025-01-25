@@ -1,0 +1,56 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-classpath
+'C:/Users/helen/.m2/repository/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar;C:/Users/helen/.m2/repository/org/mariadb/jdbc/mariadb-java-client/3.5.1/mariadb-java-client-3.5.1.jar;C:/Users/helen/.m2/repository/com/github/waffle/waffle-jna/3.3.0/waffle-jna-3.3.0.jar;C:/Users/helen/.m2/repository/net/java/dev/jna/jna/5.13.0/jna-5.13.0.jar;C:/Users/helen/.m2/repository/net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.jar;C:/Users/helen/.m2/repository/org/slf4j/jcl-over-slf4j/2.0.7/jcl-over-slf4j-2.0.7.jar;C:/Users/helen/.m2/repository/com/github/ben-manes/caffeine/caffeine/2.9.3/caffeine-2.9.3.jar;C:/Users/helen/.m2/repository/com/google/errorprone/error_prone_annotations/2.10.0/error_prone_annotations-2.10.0.jar;C:/Users/helen/.m2/repository/org/checkerframework/checker-qual/3.32.0/checker-qual-3.32.0.jar;C:/Users/helen/.m2/repository/org/slf4j/slf4j-api/2.0.9/slf4j-api-2.0.9.jar;C:/Users/helen/.m2/repository/org/slf4j/slf4j-simple/2.0.9/slf4j-simple-2.0.9.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'C:/Users/helen/Documents/NetBeansProjects/practica3/DAW-java-app/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/helen/Documents/NetBeansProjects/practica3/DAW-java-app/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-Xdoclint:none
+-doctitle
+'practica3-1.0-SNAPSHOT 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' 'C:/Users/helen/Documents/NetBeansProjects/practica3/DAW-java-app/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'practica3-1.0-SNAPSHOT 1.0-SNAPSHOT API'
+com.practica3
+C:\Users\helen\.m2\repository\javax\servlet\javax.servlet-api\4.0.1\javax.servlet-api-4.0.1.jar = 1733564524042
+C:\Users\helen\.m2\repository\org\mariadb\jdbc\mariadb-java-client\3.5.1\mariadb-java-client-3.5.1.jar = 1733900252215
+C:\Users\helen\.m2\repository\com\github\waffle\waffle-jna\3.3.0\waffle-jna-3.3.0.jar = 1733900252247
+C:\Users\helen\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar = 1733900252450
+C:\Users\helen\.m2\repository\net\java\dev\jna\jna-platform\5.13.0\jna-platform-5.13.0.jar = 1733900252441
+C:\Users\helen\.m2\repository\org\slf4j\jcl-over-slf4j\2.0.7\jcl-over-slf4j-2.0.7.jar = 1733900252325
+C:\Users\helen\.m2\repository\com\github\ben-manes\caffeine\caffeine\2.9.3\caffeine-2.9.3.jar = 1733655991185
+C:\Users\helen\.m2\repository\com\google\errorprone\error_prone_annotations\2.10.0\error_prone_annotations-2.10.0.jar = 1733655991114
+C:\Users\helen\.m2\repository\org\checkerframework\checker-qual\3.32.0\checker-qual-3.32.0.jar = 1733900252362
+C:\Users\helen\.m2\repository\org\slf4j\slf4j-api\2.0.9\slf4j-api-2.0.9.jar = 1733900252276
+C:\Users\helen\.m2\repository\org\slf4j\slf4j-simple\2.0.9\slf4j-simple-2.0.9.jar = 1733900252306
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\src\main\java = 1733779976717
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\allclasses-index.html = 1737803828062
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\allpackages-index.html = 1737803828065
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\element-list = 1737803828000
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\help-doc.html = 1737803828088
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\index-all.html = 1737803828078
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\index.html = 1737803828082
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\member-search-index.js = 1737803828069
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\module-search-index.js = 1737803828066
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\overview-tree.html = 1737803828049
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\package-search-index.js = 1737803828067
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\search.html = 1737803828080
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\serialized-form.html = 1737803828020
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\tag-search-index.js = 1737803828070
+C:\Users\helen\Documents\NetBeansProjects\practica3\DAW-java-app\target\reports\apidocs\type-search-index.js = 1737803828068

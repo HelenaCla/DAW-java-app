@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.practica3","l":"Connexio"},{"p":"com.practica3","l":"Consulta"},{"p":"com.practica3","l":"EditarLlibresServlet"},{"p":"com.practica3","l":"EliminarServlet"},{"p":"com.practica3","l":"InsertarServlet"},{"p":"com.practica3","l":"TestConexionServlet"}];updateSearchResults();

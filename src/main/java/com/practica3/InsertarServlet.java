@@ -12,9 +12,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// Definición del servlet con su URL de mapeo
+/**
+ * Servlet InsertarServlet
+ * 
+ * Este servlet maneja las solicitudes POST para insertar un nuevo libro en la base de datos.
+ * También inserta los autores si no existen y establece relaciones entre el libro y los autores
+ * en la tabla `llibre_autor`.
+ * 
+ */
 @WebServlet(name = "InsertarLlibreServlet", urlPatterns = {"/insertarLlibre"})
 public class InsertarServlet extends HttpServlet {
+
+    /**
+     * Procesa las solicitudes POST para insertar un libro y sus autores en la base de datos.
+     * <p>
+     * Realiza los siguientes pasos:
+     * <ol>
+     *   <li>Inserta el libro en la tabla `llibres`.</li>
+     *   <li>Verifica si los autores ya existen. Si no, los inserta en la tabla `autors`.</li>
+     *   <li>Establece relaciones entre el libro y los autores en la tabla `llibre_autor`.</li>
+     * </ol>
+     * </p>
+     *
+     * @param request  el objeto {@link HttpServletRequest} que contiene la solicitud del cliente.
+     * @param response el objeto {@link HttpServletResponse} que se utiliza para devolver la respuesta al cliente.
+     * @throws ServletException si ocurre un error específico del servlet.
+     * @throws IOException      si ocurre un error de entrada/salida.
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -26,7 +50,7 @@ public class InsertarServlet extends HttpServlet {
         String titol = request.getParameter("titol");
         String isbn = request.getParameter("isbn");
         String anyPublicacio = request.getParameter("any_publicacio");
-        String[] autors = request.getParameterValues("autors"); // Los autores vendrán en un array
+        String[] autors = request.getParameterValues("autors"); // Los autores vienen en un array
 
         try (PrintWriter out = response.getWriter()) {
             // Inicio del HTML con Bootstrap
@@ -42,7 +66,11 @@ public class InsertarServlet extends HttpServlet {
             out.println("<div class='container mt-5'>");
 
             try (Connection connection = Connexio.getConnection()) {
-                // 1️⃣ Insertar el libro en la tabla `llibres`
+                /**
+                 * Inserta el libro en la tabla `llibres`.
+                 *
+                 * @throws SQLException si ocurre un error al ejecutar la consulta.
+                 */
                 String sqlInsertLlibre = "INSERT INTO llibres (titol, isbn, any_publicacio) VALUES (?, ?, ?)";
                 PreparedStatement stmtLlibre = connection.prepareStatement(sqlInsertLlibre, PreparedStatement.RETURN_GENERATED_KEYS);
                 stmtLlibre.setString(1, titol);
@@ -64,9 +92,14 @@ public class InsertarServlet extends HttpServlet {
                     out.println("<p><strong>ID del libro:</strong> " + idLlibre + "</p>");
                     out.println("</div>");
 
-                    // 2️⃣ Insertar los autores (si no existen) y 3️⃣ Relacionar con el libro en la tabla `llibre_autor`
+                    // Inserta los autores y establece relaciones con el libro
                     for (String nomAutor : autors) {
-                        // Verificar si el autor ya existe
+                        /**
+                         * Verifica si el autor ya existe en la tabla `autors`.
+                         * Si no existe, lo inserta.
+                         *
+                         * @throws SQLException si ocurre un error al ejecutar la consulta.
+                         */
                         int idAutor = -1;
                         String sqlSelectAutor = "SELECT id FROM autors WHERE nom = ?";
                         PreparedStatement stmtSelectAutor = connection.prepareStatement(sqlSelectAutor);
@@ -76,7 +109,6 @@ public class InsertarServlet extends HttpServlet {
                         if (rsAutor.next()) {
                             idAutor = rsAutor.getInt("id");
                         } else {
-                            // Insertar el autor si no existe
                             String sqlInsertAutor = "INSERT INTO autors (nom) VALUES (?)";
                             PreparedStatement stmtInsertAutor = connection.prepareStatement(sqlInsertAutor, PreparedStatement.RETURN_GENERATED_KEYS);
                             stmtInsertAutor.setString(1, nomAutor);
@@ -89,7 +121,11 @@ public class InsertarServlet extends HttpServlet {
                         }
                         stmtSelectAutor.close();
 
-                        // Relacionar el libro con el autor en la tabla `llibre_autor`
+                        /**
+                         * Establece la relación entre el libro y el autor en la tabla `llibre_autor`.
+                         *
+                         * @throws SQLException si ocurre un error al ejecutar la consulta.
+                         */
                         if (idAutor > 0) {
                             String sqlInsertLlibreAutor = "INSERT INTO llibre_autor (id_llibre, id_autor) VALUES (?, ?)";
                             PreparedStatement stmtLlibreAutor = connection.prepareStatement(sqlInsertLlibreAutor);
@@ -106,6 +142,11 @@ public class InsertarServlet extends HttpServlet {
                 }
 
             } catch (SQLException e) {
+                /**
+                 * Maneja errores relacionados con la base de datos.
+                 *
+                 * @param e la excepción {@link SQLException} que contiene detalles del error.
+                 */
                 e.printStackTrace();
                 out.println("<div class='alert alert-danger' role='alert'>");
                 out.println("<p>❌ Error en la inserción en la base de datos: " + e.getMessage() + "</p>");
@@ -122,6 +163,11 @@ public class InsertarServlet extends HttpServlet {
             out.println("</html>");
 
         } catch (Exception e) {
+            /**
+             * Maneja errores generales del servlet.
+             *
+             * @param e la excepción {@link Exception} que contiene detalles del error.
+             */
             e.printStackTrace();
             response.getWriter().println("<p>Error general: " + e.getMessage() + "</p>");
         }

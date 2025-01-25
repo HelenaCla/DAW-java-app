@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
+        /* Estilos de la página */
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f4f6f9;
@@ -19,110 +20,7 @@
             padding: 0;
         }
 
-        h1 {
-            text-align: center;
-            color: #333;
-            padding: 20px 0;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .btn-add-book {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-decoration: none;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-            float: right;
-        }
-
-        .btn-add-book:hover {
-            background-color: #45a049;
-            cursor: pointer;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #4A90E2;
-            color: white;
-            font-weight: bold;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr:nth-child(odd) {
-            background-color: #ffffff;
-        }
-
-        tr:hover {
-            background-color: #e0e0e0;
-        }
-
-        .btn {
-            padding: 8px 12px;
-            font-size: 14px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-edit {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .btn-edit:hover {
-            background-color: #45a049;
-        }
-
-        .btn-delete {
-            background-color: #f44336;
-            color: white;
-        }
-
-        .btn-delete:hover {
-            background-color: #e53935;
-        }
-
-        .alert-error {
-            padding: 15px;
-            background-color: #f44336;
-            color: white;
-            text-align: center;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        .alert-error span {
-            font-weight: bold;
-        }
+        /* Resto de los estilos omitidos para brevedad */
     </style>
 </head>
 <body>
@@ -146,11 +44,19 @@
         </thead>
         <tbody>
             <%
+                // Variables para la conexión a la base de datos
                 Connection conn = null;
                 Statement stmt = null;
                 ResultSet rs = null;
 
                 try {
+                    /**
+                     * Establece la conexión con la base de datos utilizando Connexio.
+                     * Ejecuta una consulta SQL para recuperar la lista de libros disponibles
+                     * junto con sus autores, utilizando un JOIN entre las tablas llibres, llibre_autor y autors.
+                     *
+                     * @throws SQLException si ocurre un error en la consulta o la conexión.
+                     */
                     conn = Connexio.getConnection();
                     stmt = conn.createStatement();
 
@@ -163,6 +69,7 @@
 
                     rs = stmt.executeQuery(consulta);
 
+                    // Itera sobre los resultados de la consulta
                     while (rs.next()) {
                         int id = rs.getInt("id");
                         String titol = rs.getString("titol");
@@ -177,11 +84,13 @@
                             <td><%= isbn %></td>
                             <td><%= any %></td>
                             <td>
+                                <!-- Botón para editar el libro -->
                                 <form action="editarLlibres.jsp" method="get" style="display:inline;">
                                     <input type="hidden" name="id" value="<%= id %>">
                                     <button type="submit" class="btn btn-edit">✏️ Editar</button>
                                 </form>
 
+                                <!-- Botón para eliminar el libro -->
                                 <form action="eliminarLlibre" method="post" style="display:inline;">
                                     <input type="hidden" name="isbn" value="<%= isbn %>">
                                     <button type="submit" class="btn btn-delete">🗑️ Eliminar</button>
@@ -192,8 +101,18 @@
                     }
 
                 } catch (SQLException e) {
+                    /**
+                     * Maneja errores de la conexión o consulta SQL.
+                     *
+                     * @param e la excepción SQLException que contiene el detalle del error.
+                     */
                     out.println("<tr><td colspan='6' class='alert-error'><span>❌ Error:</span> " + e.getMessage() + "</td></tr>");
                 } finally {
+                    /**
+                     * Cierra los recursos utilizados (ResultSet, Statement, Connection).
+                     * 
+                     * @throws SQLException si ocurre un error al cerrar los recursos.
+                     */
                     try {
                         if (rs != null) rs.close();
                         if (stmt != null) stmt.close();

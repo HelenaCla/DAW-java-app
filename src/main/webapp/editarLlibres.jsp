@@ -16,7 +16,14 @@
     <h1 class="text-center mb-4">Editar Libro</h1>
 
     <% 
-        // Obtener el parámetro ID de la URL
+        /**
+         * Recupera el parámetro ID del libro desde la URL.
+         * Si no se proporciona un ID válido, muestra un mensaje de error.
+         *
+         * @param id el identificador del libro recibido como parámetro en la URL.
+         * @return Si el ID no está presente o es inválido, se redirige al usuario
+         *         a la página principal de la lista de libros.
+         */
         String id = request.getParameter("id");
         if (id == null || id.isEmpty()) {
     %>
@@ -28,12 +35,18 @@
         return;
         }
 
-        // Conexión a la base de datos para recuperar la información actual del libro
+        // Declaración de objetos para la conexión a la base de datos
         Connection connection = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         try {
+            /**
+             * Conecta con la base de datos utilizando la clase Connexio.
+             * Recupera los detalles del libro correspondiente al ID proporcionado.
+             *
+             * @throws SQLException si ocurre algún problema con la conexión o la consulta SQL.
+             */
             connection = Connexio.getConnection();
             String sql = "SELECT * FROM llibres WHERE id = ?";
             pstmt = connection.prepareStatement(sql);
@@ -44,6 +57,7 @@
     %>
 
     <form action="editarLlibre" method="post" class="bg-light p-4 rounded shadow-sm">
+        <!-- Enviar el ID del libro como un campo oculto -->
         <input type="hidden" name="id" value="<%= rs.getInt("id") %>">
 
         <div class="mb-3">
@@ -89,6 +103,11 @@
     <%
             e.printStackTrace();
         } finally {
+            /**
+             * Libera los recursos asociados con la conexión, el PreparedStatement y el ResultSet.
+             * 
+             * @throws SQLException si ocurre un error al cerrar los recursos.
+             */
             try {
                 if (rs != null) rs.close();
                 if (pstmt != null) pstmt.close();
